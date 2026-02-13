@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Happy Valentine's Day ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff9a9e, #fecfef);
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            perspective: 1000px; /* 🌫 Enables 3D depth */
+        }
+
+        /* 🌷 Tulips in Corners (Classy Layout) */
+        .corner {
+            position: fixed;
+            font-size: 60px;
+            opacity: 0.9;
+            z-index: -1;
+        }
+
+        .top-left { top: 10px; left: 15px; }
+        .top-right { top: 10px; right: 15px; }
+        .bottom-left { bottom: 10px; left: 15px; }
+        .bottom-right { bottom: 10px; right: 15px; }
+
+        /* 🌸 Falling Petals */
+        .petals span {
+            position: fixed;
+            
+            top: -10px;
+            font-size: 20px;
+            animation: fall linear infinite;
+            opacity: 0.8;
+            z-index: -1;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10px) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* 💌 Card with Parallax Effect */
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+            width: 500px;
+            animation: fadeInCard 1.5s ease-in-out;
+            transition: transform 0.2s ease;
+        }
+
+        h1 {
+            color: #ff4d6d;
+        }
+
+        .typing {
+            font-size: 26px;
+            color: #e60073;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid #e60073;
+            width: 0;
+            margin: 15px auto;
+            animation: typing 3s steps(25, end) forwards, blink 0.7s infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent }
+        }
+
+        .heart {
+            font-size: 40px;
+            animation: beat 1s infinite;
+        }
+
+        @keyframes beat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.25); }
+            100% { transform: scale(1); }
+        }
+
+        .gallery {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .gallery img {
+            width: 120px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.1);
+        }
+
+        button {
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s ease;
+        }
+
+        button:hover {
+            background: #e60073;
+            transform: scale(1.1);
+        }
+
+        .hidden-message {
+            margin-top: 20px;
+            display: none;
+            font-size: 18px;
+            color: #444;
+            opacity: 0;
+        }
+
+        .show {
+            display: block;
+            animation: fadeIn 2s forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInCard {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 🌷 Tulips in Corners -->
+    <div class="corner top-left">🌷</div>
+    <div class="corner top-right">🌷</div>
+    <div class="corner bottom-left">🌷</div>
+    <div class="corner bottom-right">🌷</div>
+
+    <!-- 🌸 Falling Petals -->
+    <div class="petals">
+        <span style="left:5%; animation-duration:10s;">🌸</span>
+        <span style="left:15%; animation-duration:12s;">🌸</span>
+        <span style="left:30%; animation-duration:9s;">🌸</span>
+        <span style="left:45%; animation-duration:11s;">🌸</span>
+        <span style="left:60%; animation-duration:13s;">🌸</span>
+        <span style="left:75%; animation-duration:10s;">🌸</span>
+        <span style="left:85%; animation-duration:14s;">🌸</span>
+    </div>
+
+    <div class="card" id="card">
+        <h1>Happy Valentine's Day ❤️</h1>
+
+        <div class="typing">SONAM 💖</div>
+
+        <div class="heart">💘</div>
+
+        <div class="gallery">
+            <img src="./sonam and me 1.jpeg" alt="Her Photo 1">
+            <img src="./sonam and me 2.jpeg" alt="Her Photo 2">
+            <img src="./sonam and me 3.jpeg" alt="Her Photo 3">
+        </div>
+
+        <button onclick="revealMessage()">Open My Heart 💌</button>
+
+        <div class="hidden-message" id="message">
+            Every smile of yours makes my world brighter. ✨  
+            You are truly special to me, today and always. 💕
+        </div>
+    </div>
+
+    <script>
+        function revealMessage() {
+            document.getElementById("message").classList.add("show");
+        }
+
+        // 🌫 Parallax 3D Tilt Effect
+        const card = document.getElementById("card");
+
+        document.addEventListener("mousemove", (e) => {
+            let x = (window.innerWidth / 2 - e.pageX) / 25;
+            let y = (window.innerHeight / 2 - e.pageY) / 25;
+            card.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+        });
+
+        document.addEventListener("mouseleave", () => {
+            card.style.transform = "rotateY(0deg) rotateX(0deg)";
+        });
+    </script>
+
+</body>
+</html>
